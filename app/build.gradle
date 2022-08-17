@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.cjurjiu:AnimCubeAndroid:master-SNAPSHOT'
-    implementation "androidx.room:room-runtime:2.4.3"
+    implementation 'androidx.room:room-runtime:2.5.0-alpha02'
+    implementation project(path: ':animcubeandroid')
     annotationProcessor "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-rxjava2:2.4.3"
     implementation "androidx.room:room-rxjava3:2.4.3"

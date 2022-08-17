@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/homePageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="UNSCRAMBLE"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor = "?android:textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.054" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/solveButton"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Solve"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="15dp"
+        app:icon="@drawable/ic_rubiks_cube_icon_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/timerButton"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:text="Timer"
+        android:fontFamily="@font/product_sans_bold"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_baseline_timer_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331"
+        app:cornerRadius="15dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/algoButton"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Algorithms"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_baseline_view_week_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575"
+        app:cornerRadius="15dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settingsButton"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Settings"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_baseline_settings_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575"
+        app:cornerRadius="15dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="94dp"
+        android:layout_height="274dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/cube" />
+</androidx.constraintlayout.widget.ConstraintLayout>

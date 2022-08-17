@@ -1,0 +1,172 @@
+{
+  "abi": "X86_64",
+  "info": {
+    "abi": "X86_64",
+    "bitness": 64,
+    "deprecated": false,
+    "default": true
+  },
+  "cxxBuildFolder": "D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64",
+  "soFolder": "D:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64",
+  "soRepublishFolder": "D:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cmake\\release\\obj\\x86_64",
+  "abiPlatformVersion": 24,
+  "cmake": {
+    "effectiveConfiguration": {
+      "inheritEnvironments": [],
+      "variables": []
+    }
+  },
+  "variant": {
+    "buildSystemArgumentList": [
+      "-DANDROID_STL\u003dc++_shared"
+    ],
+    "cFlagsList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": [
+      "opencv_jni_shared"
+    ],
+    "implicitBuildTargetSet": [],
+    "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
+    "module": {
+      "cxxFolder": "D:\\Projects\\Unscramble\\openCV\\.cxx",
+      "intermediatesBaseFolder": "D:\\Projects\\Unscramble\\openCV\\build\\intermediates",
+      "intermediatesFolder": "D:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx",
+      "gradleModulePathName": ":openCV",
+      "moduleRootFolder": "D:\\Projects\\Unscramble\\openCV",
+      "moduleBuildFile": "D:\\Projects\\Unscramble\\openCV\\build.gradle",
+      "makeFile": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "ndkFolder": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888",
+      "ndkVersion": "24.0.8215888",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultStl": "LIBCXX_STATIC",
+      "ndkMetaPlatforms": {
+        "min": 19,
+        "max": 32,
+        "aliases": {
+          "20": 19,
+          "25": 24,
+          "J": 16,
+          "J-MR1": 17,
+          "J-MR2": 18,
+          "K": 19,
+          "L": 21,
+          "L-MR1": 22,
+          "M": 23,
+          "N": 24,
+          "N-MR1": 24,
+          "O": 26,
+          "O-MR1": 27,
+          "P": 28,
+          "Q": 29,
+          "R": 30,
+          "S": 31,
+          "Sv2": 32
+        }
+      },
+      "ndkMetaAbiList": [
+        {
+          "abi": "ARMEABI_V7A",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "ARM64_V8A",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86_64",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        }
+      ],
+      "cmakeToolchainFile": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake",
+      "cmake": {
+        "isValidCmakeAvailable": true,
+        "cmakeExe": "D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe",
+        "minimumCmakeVersion": "3.18.1"
+      },
+      "stlSharedObjectMap": {
+        "LIBCXX_SHARED": {
+          "ARMEABI_V7A": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\arm-linux-androideabi\\libc++_shared.so",
+          "ARM64_V8A": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\aarch64-linux-android\\libc++_shared.so",
+          "X86": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
+          "X86_64": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so"
+        },
+        "LIBCXX_STATIC": {},
+        "NONE": {},
+        "SYSTEM": {}
+      },
+      "project": {
+        "rootBuildGradleFolder": "D:\\Projects\\Unscramble",
+        "sdkFolder": "D:\\Software\\AndroidSDK",
+        "isBuildOnlyTargetAbiEnabled": true,
+        "isCmakeBuildCohabitationEnabled": false,
+        "isPrefabEnabled": false
+      },
+      "outputOptions": [],
+      "ninjaExe": "D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe"
+    },
+    "prefabClassPaths": [],
+    "prefabPackages": [],
+    "prefabPackageConfigurations": [],
+    "stlType": "c++_shared",
+    "optimizationTag": "RelWithDebInfo"
+  },
+  "buildSettings": {
+    "environmentVariables": []
+  },
+  "prefabFolder": "D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\prefab\\x86_64",
+  "isActiveAbi": true,
+  "fullConfigurationHash": "4ns542g5j5mu2l5bu4k6x6p542x2b1b4k6d5rx1g3u4t6n4n6v1s2i1931q",
+  "configurationArguments": [
+    "-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper",
+    "-DCMAKE_SYSTEM_NAME\u003dAndroid",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON",
+    "-DCMAKE_SYSTEM_VERSION\u003d24",
+    "-DANDROID_PLATFORM\u003dandroid-24",
+    "-DANDROID_ABI\u003dx86_64",
+    "-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64",
+    "-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888",
+    "-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888",
+    "-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake",
+    "-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe",
+    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64",
+    "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64",
+    "-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo",
+    "-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64",
+    "-GNinja",
+    "-DANDROID_STL\u003dc++_shared"
+  ],
+  "stlLibraryFile": "D:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so",
+  "intermediatesParentFolder": "D:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5"
+}

@@ -1,0 +1,184 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 24 min SDK version: armeabi-v7a",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1211285767
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\\android_gradle_build.json due to:",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 651482522
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1826995202
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1494183748
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1223812120
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1995862586
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1725068718
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 828474488
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1752531273
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\\compile_commands.json.bin normally",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1785368484
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1536158371
+  },
+  {
+    "level_": 0,
+    "message_": "write command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\armeabi-v7a\\metadata_generation_command.txt",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1789413540
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 401914713
+  }
+]

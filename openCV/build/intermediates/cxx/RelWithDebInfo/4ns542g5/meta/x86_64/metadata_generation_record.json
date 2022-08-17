@@ -1,0 +1,184 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 24 min SDK version: x86_64",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1377639849
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\\android_gradle_build.json due to:",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1197253148
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -80571078
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1947841496
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2118516611
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 669430594
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 902518606
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003dx86_64\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1787360704
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003dx86_64\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\x86_64\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1899929377
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\\compile_commands.json.bin normally",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -846576924
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1806170360
+  },
+  {
+    "level_": 0,
+    "message_": "write command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\x86_64\\metadata_generation_command.txt",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 508427856
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -550723852
+  }
+]

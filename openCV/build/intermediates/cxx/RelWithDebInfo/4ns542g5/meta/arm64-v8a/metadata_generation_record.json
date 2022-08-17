@@ -1,0 +1,184 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 24 min SDK version: arm64-v8a",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1485966301
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\\android_gradle_build.json due to:",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1412983426
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 882947230
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1752800804
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2092871350
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 349283930
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\u0027",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -687868210
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003darm64-v8a\n-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\arm64-v8a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\arm64-v8a\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1519989476
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : D:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Projects\\Unscramble\\openCV\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003darm64-v8a\n-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a\n-DANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dD:\\Software\\AndroidSDK\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dD:\\Software\\AndroidSDK\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\arm64-v8a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Projects\\Unscramble\\openCV\\build\\intermediates\\cxx\\RelWithDebInfo\\4ns542g5\\obj\\arm64-v8a\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BD:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2016983579
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\\compile_commands.json.bin normally",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1114424644
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1889749695
+  },
+  {
+    "level_": 0,
+    "message_": "write command file D:\\Projects\\Unscramble\\openCV\\.cxx\\RelWithDebInfo\\4ns542g5\\arm64-v8a\\metadata_generation_command.txt",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1557199816
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "D:\\Projects\\Unscramble\\openCV\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -467144517
+  }
+]

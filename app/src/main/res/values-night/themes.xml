@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Unscramble" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/secondary_blue</item>
+        <item name="colorOnPrimary">@color/primary_grey</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/primary_grey</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+
+    <style name="Theme.Unscramble.SplashScreen" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/primary_grey</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_rubiks_cube_icon_white</item>
+        <item name="postSplashScreenTheme">@style/Theme.Unscramble</item>
+    </style>
+</resources>

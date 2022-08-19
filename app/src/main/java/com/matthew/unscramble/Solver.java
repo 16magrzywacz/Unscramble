@@ -1,5 +1,6 @@
 package com.matthew.unscramble;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,14 +10,28 @@ import java.util.Objects;
 
 public class Solver {
 
-    public static List<String> solution = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> sunflower = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>>whiteCross = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> whiteCorners = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> middleEdges = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> yellowCross = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> oll = new ArrayList<>();
+    public static ArrayList<ArrayList<Object>> pll = new ArrayList<>();
 
     public static String solve(Cube cube) {
-        solution.clear();
+        //Clears all the lists from previous solve
+        sunflower.clear();
+        whiteCross.clear();
+        whiteCorners.clear();
+        middleEdges.clear();
+        yellowCross.clear();
+        oll.clear();
+        pll.clear();
         makeSunflower(cube);
         makeWhiteCross(cube);
         insertWhiteCorners(cube);
         insertMiddleEdges(cube);
+
         String edgeFlipCheck = makeYellowCross(cube);
         if(edgeFlipCheck.equals("bad")) {
             return "flippedEdge";
@@ -26,13 +41,77 @@ public class Solver {
         if(!checkSolved(cube)) {
             return "parity";
         }
-        System.out.println(solution);
+
+        optimise(sunflower, 3);
+        optimise(whiteCross, 3);
+        optimise(whiteCorners, 3);
+        optimise(middleEdges, 3);
+        optimise(yellowCross, 2);
+        optimise(oll, 2);
+        optimise(pll, 2);
+
         return "solved";
+    }
+
+    public static void optimise(ArrayList<ArrayList<Object>> list, int size) {
+        for(int i = 0; i < list.size(); i++) {
+            //Obtains the ith step in the sunflower
+            ArrayList<Object> currentStep = list.get(i);
+            //Obtains the code for the ith step
+            String code = (String) currentStep.get(size - 2);
+            //If alignment is involved
+            if(code.contains("align")) {
+                //Obtains the list of moves in ith step
+                ArrayList<String> moves = (ArrayList<String>) currentStep.get(size - 1);
+                //Works out how many of the same move are at the start of the move list
+                int length = 1;
+                String firstPart = moves.get(0).substring(0,1);
+                while(moves.get(0).charAt(0) == (moves.get(length).charAt(0))) {
+                    length+=1;
+                }
+                //Works out the total rotation number based on the combination of the moves
+                int totalRot = 0;
+                for(int j = 0; j < length; j++) {
+                    String move = moves.get(j);
+                    if(move.equals("U") || move.equals("D")) {
+                        //clockwise rotation
+                        totalRot+=1;
+                    }else {
+                        if(move.equals("U2") || move.equals("D2")) {
+                            //180 degree rotation
+                            totalRot+=2;
+                        }else {
+                            //anti clockwise rotation
+                            totalRot+=3;
+                        }
+                    }
+                }
+                //removes the starting moves that need to be condensed
+                for(int j = 0; j < length; j++) {
+                    moves.remove(0);
+                }
+                //works out a new rotation number modulo 4
+                int newModify = Math.floorMod(totalRot, 4);
+                //depending on rotation number, insert a move into the start of the list
+                if(newModify == 0) {
+                    //Do nothing
+                }else if(newModify == 1) {
+                    moves.add(0, firstPart);
+                }else if(newModify == 2) {
+                    moves.add(0, firstPart+"2");
+                }else if(newModify == 3) {
+                    moves.add(0, firstPart+"'");
+                }
+                //removes the current list of moves in the original list
+                list.get(i).remove(size - 1);
+                //adds the new modified list of moves
+                list.get(i).add(moves);
+            }
+        }
     }
 
     public static boolean checkSolved(Cube cube) {
         cube.move("Z2");
-        solution.add("Z2");
         //Goes through each sticker on cube and checks against each colour, to see if it is solved
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -47,8 +126,8 @@ public class Solver {
     }
 
     public static void makeSunflower(Cube cube) {
+        ArrayList<Object> entry = new ArrayList<>();
         cube.move("Z2"); //rotates the cube 180 degrees
-        solution.add("Z2");
         List<String> currentPetals = getPetals(cube); //creates a new list of petals currently around the cube
 
         //Loops while there are less than 4 white edges around yellow centre
@@ -60,42 +139,59 @@ public class Solver {
                 // while loop checks to see if a white piece is already directly above, if so, continually
                 // rotate white face until there isn't a white edge above
                 // then adds the edge to the list of currently solved petals
-                if(s == "U") {
-                    while(cube.getWhiteFace()[2][1] == "W") {
+
+                //List that will be added to sunflower list
+                entry = new ArrayList<>();
+                //List that stores the moves for the current edge, to be added to above list
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(Utils.getCurrentEdge(s, cube));
+                entry.add("bottom");
+
+                if(s.equals("U")) {
+                    while(cube.getWhiteFace()[2][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "bottom align");
                     }
                     cube.move("F2");
-                    solution.add("F2");
+                    moves.add("F2");
                     currentPetals.add(cube.getGreenFace()[0][1]);
                 }
-                if(s == "V") {
-                    while(cube.getWhiteFace()[1][2] == "W") {
+                if(s.equals("V")) {
+                    while(cube.getWhiteFace()[1][2].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "bottom align");
                     }
                     cube.move("R2");
-                    solution.add("R2");
+                    moves.add("R2");
                     currentPetals.add(cube.getRedFace()[0][1]);
                 }
-                if(s == "W") {
-                    while(cube.getWhiteFace()[0][1] == "W") {
+                if(s.equals("W")) {
+                    while(cube.getWhiteFace()[0][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "bottom align");
                     }
                     cube.move("B2");
-                    solution.add("B2");
+                    moves.add("B2");
                     currentPetals.add(cube.getBlueFace()[0][1]);
                 }
-                if(s == "X") {
-                    while(cube.getWhiteFace()[1][0] == "W") {
+                if(s.equals("X")) {
+                    while(cube.getWhiteFace()[1][0].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "bottom align");
                     }
                     cube.move("L2");
-                    solution.add("L2");
+                    moves.add("L2");
                     currentPetals.add(cube.getOrangeFace()[0][1]);
                 }
+
+                //Adds move list to the entry list
+                entry.add(moves);
+                //Adds the entry list to the main sunflower list
+                sunflower.add(entry);
             }
 
             //Deals with edges in the middle layer
@@ -105,78 +201,99 @@ public class Solver {
                 // rotate white face until there isn't a white edge above
                 // then adds the edge to the list of currently solved petals
                 String pos = getNextMiddleWhiteEdge(cube);
-                if(pos == "J") {
-                    while(cube.getWhiteFace()[1][2] == "W") {
+
+                //List that will be added to sunflower list
+                entry = new ArrayList<>();
+                //List that stores the moves for the current edge, to be added to above list
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(Utils.getCurrentEdge(pos, cube));
+                entry.add("middle");
+
+                if(pos.equals("J")) {
+                    while(cube.getWhiteFace()[1][2].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("R");
-                    solution.add("R");
+                    moves.add("R");
                     currentPetals.add(cube.getRedFace()[0][1]);
                 }
-                if(pos == "L") {
-                    while(cube.getWhiteFace()[1][0] == "W") {
+                if(pos.equals("L")) {
+                    while(cube.getWhiteFace()[1][0].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("L'");
-                    solution.add("L'");
+                    moves.add("L'");
                     currentPetals.add(cube.getOrangeFace()[0][1]);
                 }
-                if(pos == "N") {
-                    while(cube.getWhiteFace()[0][1] == "W") {
+                if(pos.equals("N")) {
+                    while(cube.getWhiteFace()[0][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("B");
-                    solution.add("B");
+                    moves.add("B");
                     currentPetals.add(cube.getBlueFace()[0][1]);
                 }
-                if(pos == "P") {
-                    while(cube.getWhiteFace()[2][1] == "W") {
+                if(pos.equals("P")) {
+                    while(cube.getWhiteFace()[2][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("F'");
-                    solution.add("F'");
+                    moves.add("F'");
                     currentPetals.add(cube.getGreenFace()[0][1]);
                 }
-                if(pos == "R") {
-                    while(cube.getWhiteFace()[1][0] == "W") {
+                if(pos.equals("R")) {
+                    while(cube.getWhiteFace()[1][0].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("L");
-                    solution.add("L");
+                    moves.add("L");
                     currentPetals.add(cube.getOrangeFace()[0][1]);
                 }
-                if(pos == "T") {
-                    while(cube.getWhiteFace()[1][2] == "W") {
+                if(pos.equals("T")) {
+                    while(cube.getWhiteFace()[1][2].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("R'");
-                    solution.add("R'");
+                    moves.add("R'");
                     currentPetals.add(cube.getRedFace()[0][1]);
                 }
-                if(pos == "F") {
-                    while(cube.getWhiteFace()[2][1] == "W") {
+                if(pos.equals("F")) {
+                    while(cube.getWhiteFace()[2][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("F");
-                    solution.add("F");
+                    moves.add("F");
                     currentPetals.add(cube.getGreenFace()[0][1]);
                 }
-                if(pos == "H") {
-                    while(cube.getWhiteFace()[0][1] == "W") {
+                if(pos.equals("H")) {
+                    while(cube.getWhiteFace()[0][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "middle align");
                     }
                     cube.move("B'");
-                    solution.add("B'");
+                    moves.add("B'");
                     currentPetals.add(cube.getBlueFace()[0][1]);
                 }
+
+                //Adds move list to the entry list
+                entry.add(moves);
+                //Adds the entry list to the main sunflower list
+                sunflower.add(entry);
             }
 
             while(getNextBottomWhiteEdge(cube) != null) {
@@ -185,42 +302,59 @@ public class Solver {
                 // while loop checks to see if a white piece is already directly above, if so, continually
                 // rotate white face until there isn't a white edge above
                 // then adds the edge to the list of currently solved petals
-                if(pos == "K") {
-                    while(cube.getWhiteFace()[2][1] == "W") {
+
+                //List that will be added to sunflower list
+                entry = new ArrayList<>();
+                //List that stores the moves for the current edge, to be added to above list
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(Utils.getCurrentEdge(pos, cube));
+                entry.add("forward");
+
+                if(pos.equals("K")) {
+                    while(cube.getWhiteFace()[2][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "forward align");
                     }
                     cube.move(new String[]{"F", "U", "L'"});
-                    solution.addAll(Arrays.asList("F", "U", "L'"));
+                    moves.addAll(Arrays.asList("F", "U", "L'"));
                     currentPetals.add(cube.getOrangeFace()[0][1]);
                 }
-                if(pos == "O") {
-                    while(cube.getWhiteFace()[1][2] == "W") {
+                if(pos.equals("O")) {
+                    while(cube.getWhiteFace()[1][2].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "forward align");
                     }
                     cube.move(new String[]{"R", "U", "F'"});
-                    solution.addAll(Arrays.asList("R", "U", "F'"));
+                    moves.addAll(Arrays.asList("R", "U", "F'"));
                     currentPetals.add(cube.getGreenFace()[0][1]);
                 }
-                if(pos == "S") {
-                    while(cube.getWhiteFace()[0][1] == "W") {
+                if(pos.equals("S")) {
+                    while(cube.getWhiteFace()[0][1].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "forward align");
                     }
                     cube.move(new String[]{"B", "U", "R'"});
-                    solution.addAll(Arrays.asList("B", "U", "R'"));
+                    moves.addAll(Arrays.asList("B", "U", "R'"));
                     currentPetals.add(cube.getRedFace()[0][1]);
                 }
-                if(pos == "G") {
-                    while(cube.getWhiteFace()[1][0] == "W") {
+                if(pos.equals("G")) {
+                    while(cube.getWhiteFace()[1][0].equals("W")) {
                         cube.move("U");
-                        solution.add("U");
+                        moves.add("U");
+                        entry.set(1, "forward align");
                     }
                     cube.move(new String[]{"L", "U", "B'"});
-                    solution.addAll(Arrays.asList("L", "U", "B'"));
+                    moves.addAll(Arrays.asList("L", "U", "B'"));
                     currentPetals.add(cube.getBlueFace()[0][1]);
                 }
+
+                //Adds move list to the entry list
+                entry.add(moves);
+                //Adds the entry list to the main sunflower list
+                sunflower.add(entry);
             }
 
             while(getNextTopWhiteEdge(cube) != null) {
@@ -229,26 +363,39 @@ public class Solver {
                 // while loop checks to see if a white piece is already directly above, if so, continually
                 // rotate white face until there isn't a white edge above
                 // then adds the edge to the list of currently solved petals
-                if(pos == "I") {
+
+                //List that will be added to sunflower list
+                entry = new ArrayList<>();
+                //List that stores the moves for the current edge, to be added to above list
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(Utils.getCurrentEdge(pos, cube));
+                entry.add("top");
+
+                if(pos.equals("I")) {
                     cube.move(new String[]{"F'", "U", "L'"});
-                    solution.addAll(Arrays.asList("F'", "U", "L'"));
+                    moves.addAll(Arrays.asList("F'", "U", "L'"));
                     currentPetals.add(cube.getOrangeFace()[0][1]);
                 }
-                if(pos == "M") {
+                if(pos.equals("M")) {
                     cube.move(new String[]{"R'", "U", "F'"});
-                    solution.addAll(Arrays.asList("R'", "U", "F'"));
+                    moves.addAll(Arrays.asList("R'", "U", "F'"));
                     currentPetals.add(cube.getGreenFace()[0][1]);
                 }
-                if(pos == "Q") {
+                if(pos.equals("Q")) {
                     cube.move(new String[]{"B'", "U", "R'"});
-                    solution.addAll(Arrays.asList("B'", "U", "R'"));
+                    moves.addAll(Arrays.asList("B'", "U", "R'"));
                     currentPetals.add(cube.getRedFace()[0][1]);
                 }
-                if(pos == "E") {
+                if(pos.equals("E")) {
                     cube.move(new String[]{"L'", "U", "B'"});
-                    solution.addAll(Arrays.asList("L'", "U", "B'"));
+                    moves.addAll(Arrays.asList("L'", "U", "B'"));
                     currentPetals.add(cube.getBlueFace()[0][1]);
                 }
+
+                //Adds move list to the entry list
+                entry.add(moves);
+                //Adds the entry list to the main sunflower list
+                sunflower.add(entry);
             }
         }
     }
@@ -321,16 +468,16 @@ public class Solver {
 
         // if statements to go through each surrounding sticker of the white centre on the bottom
         // If it is white, then it adds the appropriate position of that corner to the list
-        if(cube.getYellowFace()[0][1] == "W") {
+        if(cube.getYellowFace()[0][1].equals("W")) {
             positions.add("U");
         }
-        if(cube.getYellowFace()[1][2] == "W") {
+        if(cube.getYellowFace()[1][2].equals("W")) {
             positions.add("V");
         }
-        if(cube.getYellowFace()[2][1] == "W") {
+        if(cube.getYellowFace()[2][1].equals("W")) {
             positions.add("W");
         }
-        if(cube.getYellowFace()[1][0] == "W") {
+        if(cube.getYellowFace()[1][0].equals("W")) {
             positions.add("X");
         }
         return positions.toArray(new String[positions.size()]); // Converts list to array and then returns it
@@ -368,7 +515,6 @@ public class Solver {
             edgesDone += checkMultiMovePetal(cube, edges, centres, positions);
         }
         cube.move("Z2");
-        solution.add("Z2");
     }
 
     // this function simply returns a list of the current edges around the sunflower
@@ -379,22 +525,31 @@ public class Solver {
     }
 
     public static int checkMatchedPetal(Cube cube, String[] edges, String[] centres, String[] positions) {
+
         //creates an initial return value
         int ret = 0;
         //loops through each edge
         for(int i = 0; i < 4; i++) {
             //If the top of the edge is white, ie does the current edge need to be solved
-            if(edges[i].substring(1, 2).equals("W")) {
+            if(edges[i].charAt(1) == 'W') {
                 //If it is a white edge, does the other colour match the centre it is above
                 if(edges[i].substring(0, 1).equals(centres[i])) {
 
+                    ArrayList<Object> entry = new ArrayList<>();
+                    ArrayList<String> moves = new ArrayList<>();
+
+                    entry.add(edges[i]);
+                    entry.add("match");
                     //Applies a move to insert it based in the edge's position
                     switch (positions[i]) {
-                        case "I": cube.move("F2"); solution.add("F2"); break;
-                        case "M": cube.move("R2"); solution.add("R2"); break;
-                        case "Q": cube.move("B2"); solution.add("B2"); break;
-                        case "E": cube.move("L2"); solution.add("L2"); break;
+                        case "I": cube.move("F2"); moves.add("F2"); break;
+                        case "M": cube.move("R2"); moves.add("R2"); break;
+                        case "Q": cube.move("B2"); moves.add("B2"); break;
+                        case "E": cube.move("L2"); moves.add("L2"); break;
                     }
+
+                    entry.add(moves);
+                    whiteCross.add(entry);
                     //increments return value by one
                     ret += 1;
                 }
@@ -404,57 +559,68 @@ public class Solver {
     }
 
     public static int checkMultiMovePetal(Cube cube, String[] edges, String[] centres, String[] positions) {
+
         int ret = 0;
         //loops through each edge
         for(int i = 0; i < 4; i++) {
             //If the top of the edge is white, ie does the current edge need to be solved
-            if(edges[i].substring(1, 2).equals("W")) {
+            if(edges[i].charAt(1) == 'W') {
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(edges[i]);
+                entry.add("align");
                 //if the colour on the edge is to the left of the desired centre colour
                 if(edges[i].substring(0, 1).equals(centres[(i+1) % 4])) {
                     //Move to top face to match edge with centre
                     cube.move("U'");
-                    solution.add("U'");
+                    moves.add("U'");
 
-                    //Depending on the edge's original position, apply the follwing move
+                    //Depending on the edge's original position, apply the following move
                     switch (positions[i]) {
-                        case "I": cube.move("R2"); solution.add("R2"); break;
-                        case "M": cube.move("B2"); solution.add("B2"); break;
-                        case "Q": cube.move("L2"); solution.add("L2"); break;
-                        case "E": cube.move("F2"); solution.add("F2"); break;
+                        case "I": cube.move("R2"); moves.add("R2"); break;
+                        case "M": cube.move("B2"); moves.add("B2"); break;
+                        case "Q": cube.move("L2"); moves.add("L2"); break;
+                        case "E": cube.move("F2"); moves.add("F2"); break;
                     }
                     //Add 1 to the return value, and then break from the for loop (as we don't want to solve another edge)
                     ret += 1;
+                    entry.add(moves);
+                    whiteCross.add(entry);
                     break;
                     //if the colour on the edge is to the right of the desired centre colour
                 }else if(edges[i].substring(0, 1).equals(centres[(i+3) % 4])) {
                     //Move to top face to match edge with centre
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
 
-                    //Depending on the edge's original position, apply the follwing move
+                    //Depending on the edge's original position, apply the following move
                     switch (positions[i]) {
-                        case "I": cube.move("L2"); solution.add("L2"); break;
-                        case "M": cube.move("F2"); solution.add("F2"); break;
-                        case "Q": cube.move("R2"); solution.add("R2"); break;
-                        case "E": cube.move("B2"); solution.add("B2"); break;
+                        case "I": cube.move("L2"); moves.add("L2"); break;
+                        case "M": cube.move("F2"); moves.add("F2"); break;
+                        case "Q": cube.move("R2"); moves.add("R2"); break;
+                        case "E": cube.move("B2"); moves.add("B2"); break;
                     }
                     ret += 1;
+                    entry.add(moves);
+                    whiteCross.add(entry);
                     break;
                     //if the colour on the edge is opposite to the desired centre colour
                 }else if(edges[i].substring(0, 1).equals(centres[(i+2) % 4])) {
                     //Move to top face to match edge with centre
                     cube.move("U2");
-                    solution.add("U2");
+                    moves.add("U2");
 
-                    //Depending on the edge's original position, apply the follwing move
+                    //Depending on the edge's original position, apply the following move
                     switch (positions[i]) {
-                        case "I": cube.move("B2"); solution.add("B2"); break;
-                        case "M": cube.move("L2"); solution.add("L2"); break;
-                        case "Q": cube.move("F2"); solution.add("F2"); break;
-                        case "E": cube.move("R2"); solution.add("R2"); break;
+                        case "I": cube.move("B2"); moves.add("B2"); break;
+                        case "M": cube.move("L2"); moves.add("L2"); break;
+                        case "Q": cube.move("F2"); moves.add("F2"); break;
+                        case "E": cube.move("R2"); moves.add("R2"); break;
                     }
                     //Add 1 to the return value, and then break from the for loop (as we don't want to solve another edge)
                     ret += 1;
+                    entry.add(moves);
+                    whiteCross.add(entry);
                     break;
                 }
             }
@@ -529,26 +695,37 @@ public class Solver {
         for(int i = 0; i < bottomDownCorners.length; i++) {
             String[] corners = bottomDownCorners;
             //If the corner is white (facing down)
-            if(corners[i].substring(0, 1).equals("W")) {
+            if(corners[i].charAt(0) == 'W') {
+
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+
+                entry.add(corners[i]);
+                entry.add("bottom down");
+
                 int adjust = 0;
                 //Rotates upper face so that there is an 'empty' space above the current corner to be corrected
-                while(Utils.getCurrentCorner(tuPos[i], cube).substring(0,1).equals("W")) {
+                while(Utils.getCurrentCorner(tuPos[i], cube).charAt(0) == 'W') {
+                    entry.set(1, "bottom down align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                     adjust+=1;
                 }
                 //Applies relevant algorithm based on it's position
                 switch(bdPos[i]) {
-                    case "V": cube.move(Algorithm.vCornerRemove); solution.addAll(Arrays.asList(Algorithm.vCornerRemove)); break;
-                    case "W": cube.move(Algorithm.wCornerRemove); solution.addAll(Arrays.asList(Algorithm.wCornerRemove)); break;
-                    case "X": cube.move(Algorithm.xCornerRemove); solution.addAll(Arrays.asList(Algorithm.xCornerRemove)); break;
-                    case "U": cube.move(Algorithm.uCornerRemove); solution.addAll(Arrays.asList(Algorithm.uCornerRemove)); break;
+                    case "V": cube.move(Algorithm.vCornerRemove); moves.addAll(Arrays.asList(Algorithm.vCornerRemove)); break;
+                    case "W": cube.move(Algorithm.wCornerRemove); moves.addAll(Arrays.asList(Algorithm.wCornerRemove)); break;
+                    case "X": cube.move(Algorithm.xCornerRemove); moves.addAll(Arrays.asList(Algorithm.xCornerRemove)); break;
+                    case "U": cube.move(Algorithm.uCornerRemove); moves.addAll(Arrays.asList(Algorithm.uCornerRemove)); break;
                 }
                 //Re-rotates the upper face so that is returns back to normal
                 for(int j = 0; j < adjust; j++) {
                     cube.move("U'");
-                    solution.add("U'");
+                    moves.add("U'");
                 }
+
+                entry.add(moves);
+                whiteCorners.add(entry);
 
                 return corners[i];
             }
@@ -558,17 +735,27 @@ public class Solver {
         for(int i = 0; i <topForwardCorners.length; i++) {
             String[] corners = topForwardCorners;
             //If the corner is white (facing forward)
-            if(corners[i].substring(0, 1).equals("W")) {
+            if(corners[i].charAt(0) == 'W') {
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+
+                entry.add(corners[i]);
+                entry.add("top forward");
+
                 switch(tfPos[i]) {
-                    case "J": cube.move(Algorithm.jCornerRemove); solution.addAll(Arrays.asList(Algorithm.jCornerRemove)); return corners[i];
-                    case "M": cube.move(Algorithm.mCornerRemove); solution.addAll(Arrays.asList(Algorithm.mCornerRemove)); return corners[i];
-                    case "N": cube.move(Algorithm.nCornerRemove); solution.addAll(Arrays.asList(Algorithm.nCornerRemove)); return corners[i];
-                    case "Q": cube.move(Algorithm.qCornerRemove); solution.addAll(Arrays.asList(Algorithm.qCornerRemove)); return corners[i];
-                    case "R": cube.move(Algorithm.rCornerRemove); solution.addAll(Arrays.asList(Algorithm.rCornerRemove)); return corners[i];
-                    case "E": cube.move(Algorithm.eCornerRemove); solution.addAll(Arrays.asList(Algorithm.eCornerRemove)); return corners[i];
-                    case "F": cube.move(Algorithm.fCornerRemove); solution.addAll(Arrays.asList(Algorithm.fCornerRemove)); return corners[i];
-                    case "I": cube.move(Algorithm.iCornerRemove); solution.addAll(Arrays.asList(Algorithm.iCornerRemove)); return corners[i];
+                    case "J": cube.move(Algorithm.jCornerRemove); moves.addAll(Arrays.asList(Algorithm.jCornerRemove)); break;
+                    case "M": cube.move(Algorithm.mCornerRemove); moves.addAll(Arrays.asList(Algorithm.mCornerRemove)); break;
+                    case "N": cube.move(Algorithm.nCornerRemove); moves.addAll(Arrays.asList(Algorithm.nCornerRemove)); break;
+                    case "Q": cube.move(Algorithm.qCornerRemove); moves.addAll(Arrays.asList(Algorithm.qCornerRemove)); break;
+                    case "R": cube.move(Algorithm.rCornerRemove); moves.addAll(Arrays.asList(Algorithm.rCornerRemove)); break;
+                    case "E": cube.move(Algorithm.eCornerRemove); moves.addAll(Arrays.asList(Algorithm.eCornerRemove)); break;
+                    case "F": cube.move(Algorithm.fCornerRemove); moves.addAll(Arrays.asList(Algorithm.fCornerRemove)); break;
+                    case "I": cube.move(Algorithm.iCornerRemove); moves.addAll(Arrays.asList(Algorithm.iCornerRemove)); break;
                 }
+
+                entry.add(moves);
+                whiteCorners.add(entry);
+                return corners[i];
             }
         }
 
@@ -576,18 +763,27 @@ public class Solver {
         for(int i = 0; i < topUpCorners.length; i++) {
             String[] corners = topUpCorners;
             //If the corner is white (facing up)
-            if(corners[i].substring(0, 1).equals("W")) {
-
+            if(corners[i].charAt(0) == 'W') {
                 String[] otherCentres = {corners[i].substring(1, 2), corners[i].substring(2,3)};
 
                 if(!(otherCentres[0].equals(tuCentres[i].substring(0, 1)) && otherCentres[1].equals(tuCentres[i].substring(1, 2)))) {
+                    ArrayList<Object> entry = new ArrayList<>();
+                    ArrayList<String> moves = new ArrayList<>();
+
+                    entry.add(corners[i]);
+                    entry.add("top up");
+
                     switch(tuPos[i]) {
-                        case "C": cube.move(Algorithm.cCornerRemove); solution.addAll(Arrays.asList(Algorithm.cCornerRemove)); return corners[i];
-                        case "B": cube.move(Algorithm.bCornerRemove); solution.addAll(Arrays.asList(Algorithm.bCornerRemove)); return corners[i];
-                        case "A": cube.move(Algorithm.aCornerRemove); solution.addAll(Arrays.asList(Algorithm.aCornerRemove)); return corners[i];
-                        case "D": cube.move(Algorithm.dCornerRemove); solution.addAll(Arrays.asList(Algorithm.dCornerRemove)); return corners[i];
+                        case "C": cube.move(Algorithm.cCornerRemove); moves.addAll(Arrays.asList(Algorithm.cCornerRemove)); break;
+                        case "B": cube.move(Algorithm.bCornerRemove); moves.addAll(Arrays.asList(Algorithm.bCornerRemove)); break;
+                        case "A": cube.move(Algorithm.aCornerRemove); moves.addAll(Arrays.asList(Algorithm.aCornerRemove)); break;
+                        case "D": cube.move(Algorithm.dCornerRemove); moves.addAll(Arrays.asList(Algorithm.dCornerRemove)); break;
                     }
+                    entry.add(moves);
+                    whiteCorners.add(entry);
+                    return corners[i];
                 }
+
             }
         }
 
@@ -601,102 +797,116 @@ public class Solver {
         String[] pos = {"K", "P", "O", "T", "S", "H", "G", "L"};
 
         for(int i = 0; i < corners.length; i++) {
-            if(corners[i].substring(0, 1).equals("W")) {
+            if(corners[i].charAt(0) == 'W') {
                 //Extracts the 2 other colours of the white corner
                 String[] otherCentres = {corners[i].substring(1, 2), corners[i].substring(2,3)};
                 int adjust = 0;
+
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(corners[i]);
+                entry.add("bottom forward");
+
                 //Goes through cases for the 4 possible other colours
                 if(otherCentres[0].equals("R") && otherCentres[1].equals("G")){
                     //If the white is on the right of a side
                     if((i % 2) == 0) {
                         //while the edge is not in the right place, keep rotating the bottom layer
                         while(!pos[(i+adjust) % 8].equals("K")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         //apply the relevant moves
                         cube.move(Algorithm.kCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.kCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.kCornerInsert));
                         //Else if the corner is on the left of a side
                     }else {
                         //while the edge is not in the right place, keep rotating the bottom layer
                         while(!pos[(i+adjust) % 8].equals("P")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         //apply the relevant moves
                         cube.move(Algorithm.pCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.pCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.pCornerInsert));
                     }
+                    entry.add(moves);
+                    whiteCorners.add(entry);
                     //Repeated process for the other possible colours
                 }else if(otherCentres[0].equals("B") && otherCentres[1].equals("R")){
                     if((i % 2) == 0) {
                         while(!pos[(i+adjust) % 8].equals("O")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.oCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.oCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.oCornerInsert));
                     }else {
                         while(!pos[(i+adjust) % 8].equals("T")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.tCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.tCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.tCornerInsert));
                     }
-
+                    entry.add(moves);
+                    whiteCorners.add(entry);
                 }else if(otherCentres[0].equals("O") && otherCentres[1].equals("B")){
                     if((i % 2) == 0) {
                         while(!pos[(i+adjust) % 8].equals("S")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.sCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.sCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.sCornerInsert));
                     }else {
                         while(!pos[(i+adjust) % 8].equals("H")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.hCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.hCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.hCornerInsert));
                     }
+                    entry.add(moves);
+                    whiteCorners.add(entry);
                 }else if(otherCentres[0].equals("G") && otherCentres[1].equals("O")){
                     if((i % 2) == 0) {
                         while(!pos[(i+adjust) % 8].equals("G")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.gCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.gCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.gCornerInsert));
                     }else {
                         while(!pos[(i+adjust) % 8].equals("L")) {
+                            entry.set(1, "bottom forward align");
                             cube.move("D");
-                            solution.add("D");
+                            moves.add("D");
                             adjust+=2;
                         }
                         cube.move(Algorithm.lCornerInsert);
-                        solution.addAll(Arrays.asList(Algorithm.lCornerInsert));
-                        return corners[i];
+                        moves.addAll(Arrays.asList(Algorithm.lCornerInsert));
                     }
+                    entry.add(moves);
+                    whiteCorners.add(entry);
                 }
                 //resets the adjustment variable to zero, used when corners weren't in the correct position to be inserted
                 adjust = 0;
+                return corners[i];
             }
         }
         return null;
@@ -801,16 +1011,22 @@ public class Solver {
         //Loops through each edge
         for(int i = 0; i < edges.length; i++) {
             //Checks to see iff the edge is not a yellow edge
-            if(!(edges[i].substring(0,1).equals("Y") || edges[i].substring(1,2).equals("Y"))) {
+            if(!(edges[i].charAt(0) == 'Y' || edges[i].charAt(1) == 'Y')) {
                 //Stores the 2 colours on the edge
                 String forwardColour = edges[i].substring(0, 1);
                 String bottomColour = edges[i].substring(1,2);
 
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(edges[i]);
+                entry.add("normal");
+
                 //Lines up the forward sticker on the edge with the correct centre piece
                 int adjust = 0;
                 while(!forwardColour.equals(centres[(i+adjust) % 4])) {
+                    entry.set(1, "normal align");
                     cube.move("D");
-                    solution.add("D");
+                    moves.add("D");
                     adjust += 1;
                 }
 
@@ -820,25 +1036,29 @@ public class Solver {
                 //Goes through each case of the edge colours and applies appropriate algorithm
                 if(newPos.equals("K")) {
                     switch (bottomColour) {
-                        case "O": cube.move(Algorithm.greenOrangeEdge); solution.addAll(Arrays.asList(Algorithm.greenOrangeEdge)); return edges[i];
-                        case "R": cube.move(Algorithm.greenRedEdge); solution.addAll(Arrays.asList(Algorithm.greenRedEdge)); return edges[i];
+                        case "O": cube.move(Algorithm.greenOrangeEdge); moves.addAll(Arrays.asList(Algorithm.greenOrangeEdge)); break;
+                        case "R": cube.move(Algorithm.greenRedEdge); moves.addAll(Arrays.asList(Algorithm.greenRedEdge)); break;
                     }
                 }else if(newPos.equals("O")) {
                     switch (bottomColour) {
-                        case "G": cube.move(Algorithm.redGreenEdge); solution.addAll(Arrays.asList(Algorithm.redGreenEdge)); return edges[i];
-                        case "B": cube.move(Algorithm.redBlueEdge); solution.addAll(Arrays.asList(Algorithm.redBlueEdge)); return edges[i];
+                        case "G": cube.move(Algorithm.redGreenEdge); moves.addAll(Arrays.asList(Algorithm.redGreenEdge)); break;
+                        case "B": cube.move(Algorithm.redBlueEdge); moves.addAll(Arrays.asList(Algorithm.redBlueEdge)); break;
                     }
                 }else if(newPos.equals("S")) {
                     switch (bottomColour) {
-                        case "R": cube.move(Algorithm.blueRedEdge); solution.addAll(Arrays.asList(Algorithm.blueRedEdge)); return edges[i];
-                        case "O": cube.move(Algorithm.blueOrangeEdge); solution.addAll(Arrays.asList(Algorithm.blueOrangeEdge)); return edges[i];
+                        case "R": cube.move(Algorithm.blueRedEdge); moves.addAll(Arrays.asList(Algorithm.blueRedEdge)); break;
+                        case "O": cube.move(Algorithm.blueOrangeEdge); moves.addAll(Arrays.asList(Algorithm.blueOrangeEdge)); break;
                     }
                 }else if(newPos.equals("G")) {
                     switch (bottomColour) {
-                        case "B": cube.move(Algorithm.orangeBlueEdge); solution.addAll(Arrays.asList(Algorithm.orangeBlueEdge)); return edges[i];
-                        case "G": cube.move(Algorithm.orangeGreenEdge); solution.addAll(Arrays.asList(Algorithm.orangeGreenEdge)); return edges[i];
+                        case "B": cube.move(Algorithm.orangeBlueEdge); moves.addAll(Arrays.asList(Algorithm.orangeBlueEdge)); break;
+                        case "G": cube.move(Algorithm.orangeGreenEdge); moves.addAll(Arrays.asList(Algorithm.orangeGreenEdge)); break;
                     }
                 }
+
+                entry.add(moves);
+                middleEdges.add(entry);
+                return edges[i];
             }
         }
         //returns null if there are no bottom edges to be solved
@@ -862,13 +1082,21 @@ public class Solver {
             //Checks to see iff the edge is not a yellow edge
             if(!(edges[i].charAt(0) == 'Y' || edges[i].charAt(1) == 'Y') &&
                     !(edges[i].equals(correctEdges[i]))) {
+
+                ArrayList<Object> entry = new ArrayList<>();
+                ArrayList<String> moves = new ArrayList<>();
+                entry.add(edges[i]);
+                entry.add("remove");
                 //If so, it applies the relevant algorithm to remove the edge and re-insert the corner
                 switch (pos[i]) {
-                    case "J": cube.move(Algorithm.greenRedEdge); solution.addAll(Arrays.asList(Algorithm.greenRedEdge)); return edges[i];
-                    case "N": cube.move(Algorithm.redBlueEdge); solution.addAll(Arrays.asList(Algorithm.redBlueEdge)); return edges[i];
-                    case "R": cube.move(Algorithm.blueOrangeEdge); solution.addAll(Arrays.asList(Algorithm.blueOrangeEdge)); return edges[i];
-                    case "F": cube.move(Algorithm.orangeGreenEdge); solution.addAll(Arrays.asList(Algorithm.orangeGreenEdge)); return edges[i];
+                    case "J": cube.move(Algorithm.greenRedEdge); moves.addAll(Arrays.asList(Algorithm.greenRedEdge)); break;
+                    case "N": cube.move(Algorithm.redBlueEdge); moves.addAll(Arrays.asList(Algorithm.redBlueEdge)); break;
+                    case "R": cube.move(Algorithm.blueOrangeEdge); moves.addAll(Arrays.asList(Algorithm.blueOrangeEdge)); break;
+                    case "F": cube.move(Algorithm.orangeGreenEdge); moves.addAll(Arrays.asList(Algorithm.orangeGreenEdge)); break;
                 }
+                entry.add(moves);
+                middleEdges.add(entry);
+                return edges[i];
             }
         }
 
@@ -879,35 +1107,50 @@ public class Solver {
     private static String makeYellowCross(Cube cube) {
         //Rotates cube so yellow faces up
         cube.move("Z2");
-        solution.add("Z2");
 
         //Identifies state of top layer edges
         String edgeCase = identifyPreYellowCrossState(cube);
 
+        ArrayList<Object> entry = new ArrayList<>();
+        ArrayList<String> moves = new ArrayList<>();
         //Goes through each case and applies the relevant algorithm
-        if(edgeCase.equals("done")) {;}
+        if(edgeCase.equals("done")) {
+            entry.add("done");
+            moves.add("");
+            entry.add(moves);
+            yellowCross.add(entry);
+            return "fine";
+        }
         else if(edgeCase.equals("zero")) {
+            entry.add("zero");
             cube.move(Algorithm.yellowCross);
             cube.move(Algorithm.yellowCrossAlt);
-            solution.addAll(Arrays.asList(Algorithm.yellowCross));
-            solution.addAll(Arrays.asList(Algorithm.yellowCrossAlt));
+            moves.addAll(Arrays.asList(Algorithm.yellowCross));
+            moves.addAll(Arrays.asList(Algorithm.yellowCrossAlt));
         }else if(edgeCase.equals("adj")) {
+            entry.add("adj");
             while(!(cube.getWhiteFace()[1][2].equals("Y") && cube.getWhiteFace()[2][1].equals("Y"))) {
+                entry.set(0, "adj align");
                 cube.move("U");
-                solution.add("U");
+                moves.add("U");
             }
             cube.move(Algorithm.yellowCrossAlt);
-            solution.addAll(Arrays.asList(Algorithm.yellowCrossAlt));
+            moves.addAll(Arrays.asList(Algorithm.yellowCrossAlt));
         }else if(edgeCase.equals("line")) {
+            entry.add("line");
             while(!(cube.getWhiteFace()[1][0].equals("Y") && cube.getWhiteFace()[1][2].equals("Y"))) {
+                entry.set(0, "line align");
                 cube.move("U");
-                solution.add("U");
+                moves.add("U");
             }
             cube.move(Algorithm.yellowCross);
-            solution.addAll(Arrays.asList(Algorithm.yellowCross));
+            moves.addAll(Arrays.asList(Algorithm.yellowCross));
         }else if(edgeCase.equals("flippedEdge")) {
             return "bad";
         }
+
+        entry.add(moves);
+        yellowCross.add(entry);
 
         return "fine";
     }
@@ -954,80 +1197,100 @@ public class Solver {
         //Finds the case of the top layer of the cube
         String ollCase = findOllCase(cube);
 
+        ArrayList<Object> entry = new ArrayList<>();
+        ArrayList<String> moves = new ArrayList<>();
         //Performs algorithm depending on the OLL case
         switch (ollCase) {
-            case "done": break;
+            case "done":
+                entry.add("done");
+                break;
             case "sune":
+                entry.add("sune");
                 //Moves upper face to correct position
                 while(!(cube.getWhiteFace()[2][0].equals("Y"))) {
+                    entry.set(0, "sune align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.sune);
-                solution.addAll(Arrays.asList(Algorithm.sune));
+                moves.addAll(Arrays.asList(Algorithm.sune));
                 break;
             case "antisune":
+                entry.add("antisune");
                 //Moves upper face to correct position
                 while(!(cube.getWhiteFace()[0][2].equals("Y"))) {
+                    entry.set(0, "antisune align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.antiSune);
-                solution.addAll(Arrays.asList(Algorithm.antiSune));
+                moves.addAll(Arrays.asList(Algorithm.antiSune));
                 break;
             case "H":
+                entry.add("H");
                 //Moves upper face to correct position
                 while(!(cube.getRedFace()[0][0].equals("Y"))) {
+                    entry.set(0, "H align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.H);
-                solution.addAll(Arrays.asList(Algorithm.H));
+                moves.addAll(Arrays.asList(Algorithm.H));
                 break;
             case "pi":
+                entry.add("pi");
                 //Moves upper face to correct position
                 while(!(cube.getOrangeFace()[0][0].equals("Y") && cube.getOrangeFace()[0][2].equals("Y"))) {
+                    entry.set(0, "pi align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.pi);
-                solution.addAll(Arrays.asList(Algorithm.pi));
+                moves.addAll(Arrays.asList(Algorithm.pi));
                 break;
             case "L":
+                entry.add("L");
                 //Moves upper face to correct position
                 while(!(cube.getGreenFace()[0][0].equals("Y"))) {
+                    entry.set(0, "L align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.L);
-                solution.addAll(Arrays.asList(Algorithm.L));
+                moves.addAll(Arrays.asList(Algorithm.L));
                 break;
             case "U":
+                entry.add("U");
                 //Moves upper face to correct position
                 while(!(cube.getGreenFace()[0][0].equals("Y"))) {
+                    entry.set(0, "U align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.U);
-                solution.addAll(Arrays.asList(Algorithm.U));
+                moves.addAll(Arrays.asList(Algorithm.U));
                 break;
             case "T":
+                entry.add("T");
                 //Moves upper face to correct position
                 while(!(cube.getGreenFace()[0][0].equals("Y"))) {
+                    entry.set(0, "T align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 //Applies algorithm
                 cube.move(Algorithm.T);
-                solution.addAll(Arrays.asList(Algorithm.T));
+                moves.addAll(Arrays.asList(Algorithm.T));
                 break;
         }
+        entry.add(moves);
+        oll.add(entry);
     }
 
     private static String findOllCase(Cube cube) {
@@ -1108,10 +1371,17 @@ public class Solver {
         createHeadlights(cube);
         finalAlgorithm(cube);
 
-        while(!(cube.getGreenFace()[0][0].equals(cube.getGreenFace()[1][0]))) {
-            cube.move("U");
-            solution.add("U");
+        ArrayList<Object> entry = new ArrayList<>();
+        ArrayList<String> moves = new ArrayList<>();
+        entry.add("line up");
+        switch (cube.getGreenFace()[0][0]) {
+            case "G": break;
+            case "O": cube.move("U'"); moves.add("U'"); break;
+            case "R": cube.move("U"); moves.add("U"); break;
+            case "B": cube.move("U2"); moves.add("U2"); break;
         }
+        entry.add(moves);
+        pll.add(entry);
     }
 
     private static void createHeadlights(Cube cube) {
@@ -1128,21 +1398,33 @@ public class Solver {
             }
         }
 
+        ArrayList<Object> entry = new ArrayList<>();
+        ArrayList<String> moves = new ArrayList<>();
         //goes through the cases and applies appropriate algorithm
-        if(numHeadlights == 4) {;}
-        else if(numHeadlights == 0) {
+        if(numHeadlights == 4) {
+            entry.add("done");
+            moves.add("");
+            entry.add(moves);
+            //do nothing
+        }else if(numHeadlights == 0) {
+            entry.add("zero");
             cube.move(Algorithm.createHeadlightsNoPair);
-            solution.addAll(Arrays.asList(Algorithm.createHeadlightsNoPair));
-            createHeadlights(cube);
+            moves.addAll(Arrays.asList(Algorithm.createHeadlightsNoPair));
+            entry.add(moves);
+            //createHeadlights(cube);
         }else if(numHeadlights == 1) {
+            entry.add("1");
             //lines the headlights up to the left of the cube
             while(!(cube.getOrangeFace()[0][0].equals(cube.getOrangeFace()[0][2]))) {
+                entry.set(0, "1 align");
                 cube.move("U");
-                solution.add("U");
+                moves.add("U");
             }
             cube.move(Algorithm.createHeadlightsOnePair);
-            solution.addAll(Arrays.asList(Algorithm.createHeadlightsOnePair));
+            moves.addAll(Arrays.asList(Algorithm.createHeadlightsOnePair));
+            entry.add(moves);
         }
+        pll.add(entry);
     }
 
     private static void finalAlgorithm(Cube cube) {
@@ -1164,6 +1446,10 @@ public class Solver {
         //Checks if there is a bar of 3 identical colours, and if there are headlights with an opposite colour in between
         boolean hasBar = false;
         boolean hasOppHeadlight = false;
+
+        ArrayList<Object> entry = new ArrayList<>();
+        ArrayList<String> moves = new ArrayList<>();
+
         for(int i = 0; i < colours.size(); i++) {
             if(colours.get(i).equals(colours.get((i+1) % 12)) && colours.get(i).equals(colours.get((i+2) % 12))) {
                 hasBar = true;
@@ -1176,37 +1462,54 @@ public class Solver {
         }
 
         //goes through each case and applies the relevant algorithm
-        if(hasOppHeadlight == true) {
-            if(hasBar == true) {
+        if(hasOppHeadlight) {
+            if(hasBar) {
+                boolean adjusted = false;
                 //lines up cube so that the bar is on the back
                 while(!(cube.getBlueFace()[0][0].equals(cube.getBlueFace()[0][1]) && cube.getBlueFace()[0][0].equals(cube.getBlueFace()[0][2]))) {
+                    adjusted = true;
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 if(cube.getOrangeFace()[0][0].equals(opposites.get(cube.getOrangeFace()[0][1]))) {
+                    if(adjusted) {
+                        entry.add("Left 3 Cycle align");
+                    }else {
+                        entry.add("Left 3 Cycle");
+                    }
                     cube.move(Algorithm.pllLeft3Cycle);
-                    solution.addAll(Arrays.asList(Algorithm.pllLeft3Cycle));
+                    moves.addAll(Arrays.asList(Algorithm.pllLeft3Cycle));
                 }else {
+                    if(adjusted) {
+                        entry.add("Right 3 Cycle align");
+                    }else {
+                        entry.add("Right 3 Cycle");
+                    }
                     cube.move(Algorithm.pllRight3Cycle);
-                    solution.addAll(Arrays.asList(Algorithm.pllRight3Cycle));
+                    moves.addAll(Arrays.asList(Algorithm.pllRight3Cycle));
                 }
             }else {
+                entry.add("Plus");
                 cube.move(Algorithm.pllPlus);
-                solution.addAll(Arrays.asList(Algorithm.pllPlus));
+                moves.addAll(Arrays.asList(Algorithm.pllPlus));
             }
         }else {
-            if(hasBar == true) {
-                ;
+            if(hasBar) {
+                entry.add("complete");
             }else {
+                entry.add("Adjacent");
                 //lines up cube so that an adjacent swap is on the bottom right of the top layer
                 while(!(cube.getGreenFace()[0][1].equals(cube.getRedFace()[0][0]))) {
+                    entry.set(0, "Adjacent align");
                     cube.move("U");
-                    solution.add("U");
+                    moves.add("U");
                 }
                 cube.move(Algorithm.pllAdjacent);
-                solution.addAll(Arrays.asList(Algorithm.pllAdjacent));
+                moves.addAll(Arrays.asList(Algorithm.pllAdjacent));
             }
         }
+        entry.add(moves);
+        pll.add(entry);
     }
 
 }

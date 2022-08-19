@@ -18,15 +18,12 @@ public class AlgorithmMenuActivity extends AppCompatActivity {
 
         Store.resetScrambleVariables();
 
-        home = (ImageButton)findViewById(R.id.solutionHome);
+        home = (ImageButton)findViewById(R.id.algorithmMenuHome);
 
         //Returns to home when pressed
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AlgorithmMenuActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(AlgorithmMenuActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }

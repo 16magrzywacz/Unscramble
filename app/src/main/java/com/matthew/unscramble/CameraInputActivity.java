@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.SurfaceView;
@@ -13,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -27,9 +33,10 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.lang.reflect.Type;
 import java.util.Arrays;
 
-public class CameraInputActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class CameraInputActivity extends AppCompatActivity implements JavaCamera2View.CvCameraViewListener2 {
 
     JavaCamera2View cameraBridgeViewBase;
     Mat mRGBA;
@@ -77,6 +84,28 @@ public class CameraInputActivity extends AppCompatActivity implements CameraBrid
         centreSquare = (ImageView)findViewById(R.id.square5);
         indicatorTop = (ImageView)findViewById(R.id.cameraIndicatorTop);
         indicatorBottom = (ImageView)findViewById(R.id.cameraIndicatorBottom);
+
+        //Loads the calibrated colours, to see if the user has performed a calibration or not
+        SharedPreferences sharedPreferences = getSharedPreferences("UNSCRAMBLE", MODE_PRIVATE);
+        String cal = sharedPreferences.getString("calibrated_colours", "");
+        //If not calibration, display a warning
+        if(cal.equals("")) {
+            MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+            dialog.setTitle("Warning!");
+            dialog.setMessage("Look like you haven't calibrated any colours yet! Would you like to do " +
+                    "the calibration or use the default colours for now?");
+            dialog.setNegativeButton("Use Default", (dialog12, which) -> {/*Do nothing*/});
+            dialog.setPositiveButton("Calibrate", (dialog1, which) -> {
+                //Sets a preference so that the app knows where to redirect the user to
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("cal_redirect", "input");
+                editor.apply();
+                //Switches view
+                Intent intent = new Intent(this, CalibrateActivity.class);
+                startActivity(intent);
+            });
+            dialog.show();
+        }
 
         home = (ImageButton)findViewById(R.id.cameraHome);
 
@@ -223,6 +252,7 @@ public class CameraInputActivity extends AppCompatActivity implements CameraBrid
         return mRGBA;
     }
 
+
     public String getColour(double[] vals) {
 
         //Stores red, green, and blue values of the input colour
@@ -233,11 +263,31 @@ public class CameraInputActivity extends AppCompatActivity implements CameraBrid
         // stored in this colour order R G B W Y O
         int[] closeness = new int[6];
 
+        //Obtains calibrated colours, and determines if a calibration had been performed
+        SharedPreferences sharedPreferences = getSharedPreferences("UNSCRAMBLE", MODE_PRIVATE);
+        String json = sharedPreferences.getString("calibrated_colours", "");
+        boolean calibrated;
+        calibrated = !json.equals("");
+
+        //Converts the json back to int arrays
+        Type type = new TypeToken<int[][]>() {}.getType();
+        Gson gson = new Gson();
+        int[][] colours = gson.fromJson(json, type);
+
         //Calculates a closeness value to each of the calibrated colours by adding the difference of each
         // of the 3 red, green and blue colour vals
         for(int i = 0; i < 6; i++) {
-            closeness[i] = Math.abs(red - Store.calibratedColours[i][0]) + Math.abs(green - Store.calibratedColours[i][1])
-                    + Math.abs(blue - Store.calibratedColours[i][2]);
+            //Depending on if the colours have been calibrated or not, set the arrays to be used
+            int[][] arr;
+            System.out.println(calibrated);
+            if(!calibrated) {
+                arr = Store.calibratedColours;
+            }else {
+                arr = colours;
+            }
+            System.out.println(Arrays.deepToString(arr));
+            closeness[i] = Math.abs(red - arr[i][0]) + Math.abs(green - arr[i][1])
+                    + Math.abs(blue - arr[i][2]);
         }
 
         //Gets the smallest closeness value, and stores the index of that value

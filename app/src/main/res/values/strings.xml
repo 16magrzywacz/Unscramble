@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Unscramble</string>
+    <string-array name="anim_speeds">
+        <item>1x</item>
+        <item>0.25x</item>
+        <item>0.5x</item>
+        <item>2x</item>
+        <item>4x</item>
+    </string-array>
 </resources>

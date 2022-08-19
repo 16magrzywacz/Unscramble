@@ -64,6 +64,9 @@ import static com.catalinjurjiu.animcubeandroid.CubeUtils.vProd;
 import static com.catalinjurjiu.animcubeandroid.CubeUtils.vScale;
 import static com.catalinjurjiu.animcubeandroid.CubeUtils.vSub;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * <p>
  * View capable of displaying a 3D Rubik's Cube, with support for interaction through touch gestures and for animating a sequence of moves.
@@ -181,7 +184,7 @@ public class AnimCubeDebug extends SurfaceView implements View.OnTouchListener {
     private boolean showBackFaces;
     private double faceShift;
     // move sequence data
-    private int[] move;
+    public int[] move;
     private int movePos;
     private int moveDir;
     private boolean moveOne;
@@ -1209,7 +1212,7 @@ public class AnimCubeDebug extends SurfaceView implements View.OnTouchListener {
                 }
             } else {
                 for (int j = 0; j < 21; j++) {
-                    if (sequence.charAt(i) == "UDFBLRESMXYZxyzudfblr".charAt(j)) {
+                    if (sequence.charAt(i) == "UDFBLRESMXZYxzyudfblr".charAt(j)) {
                         i++;
                         int mode = moveModes[j];
                         move[length] = moveCodes[j] * 24;
@@ -1364,9 +1367,12 @@ public class AnimCubeDebug extends SurfaceView implements View.OnTouchListener {
                 animating = true;
                 int[] mv = move;
                 if (moveDir > 0) {
+                    /*
                     if (movePos >= mv.length) {
                         movePos = 0;
                     }
+                     */
+                    movePos = 0;
                 } else {
                     if (movePos == 0) {
                         movePos = mv.length;

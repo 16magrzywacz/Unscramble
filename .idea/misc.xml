@@ -7,11 +7,14 @@
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_baseline_home_white_24.xml" value="0.4745" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.4855" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4185" />
+        <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.4745" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_rubiks_cube_icon.xml" value="0.3165" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_rubiks_cube_icon_small.xml" value="0.4855" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_rubiks_cube_icon_white.xml" value="0.4855" />
+        <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/ic_rubiks_cube_icon_white_withbg.xml" value="0.4745" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/drawable/splash_screen.xml" value="0.4185" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_algorithm_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_calibrate.xml" value="0.5541666666666667" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_camera_input.xml" value="0.5541666666666667" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_dialog.xml" value="0.553125" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_main.xml" value="0.5401041666666667" />
@@ -21,6 +24,7 @@
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_solve_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_splash_screen.xml" value="0.5541666666666667" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/activity_timer.xml" value="0.5541666666666667" />
+        <entry key="..\:/Projects/Unscramble/app/src/main/res/layout/list_item.xml" value="0.83125" />
         <entry key="..\:/Projects/Unscramble/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4855" />
       </map>
     </option>

@@ -1184,7 +1184,8 @@ public class AnimCube extends SurfaceView implements View.OnTouchListener {
                 }
             } else {
                 for (int j = 0; j < 21; j++) {
-                    if (sequence.charAt(i) == "UDFBLRESMXYZxyzudfblr".charAt(j)) {
+                    //Modified so that Z and Y moves are correct
+                    if (sequence.charAt(i) == "UDFBLRESMXZYxzyudfblr".charAt(j)) {
                         i++;
                         int mode = moveModes[j];
                         move[length] = moveCodes[j] * 24;

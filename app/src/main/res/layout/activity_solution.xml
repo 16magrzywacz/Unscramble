@@ -22,19 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.054" />
 
-    <TextView
-        android:id="@+id/movesList"
-        android:layout_width="322dp"
-        android:layout_height="506dp"
-        android:fontFamily="@font/product_sans_bold"
-        android:text="moves here"
-        android:textColor = "?android:textColorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/solutionHome"
         android:layout_width="40dp"
@@ -50,11 +37,18 @@
 
     <com.catalinjurjiu.animcubeandroid.AnimCube
         android:id="@+id/animCube"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:backFacesDistance="4"
+        app:backgroundColor="?android:attr/colorBackground"
+        app:initialState=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight="300dp"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintWidth="250dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

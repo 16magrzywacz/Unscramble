@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -190,10 +191,16 @@ public class SolutionActivity extends AppCompatActivity {
         //Sets the cube to the user scramble
         animCube.setCubeModel(cubeState);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UNSCRAMBLE", MODE_PRIVATE);
+        String choice = sharedPreferences.getString("anim_speed", "1x");
+        //Cube library uses 10 as default speed, and a higher number is a slower speed
+        //Obtains a value by taking the choice, removing the 'x' at the end and converting to float
+        float speed = 10 / (Float.valueOf(choice.substring(0, choice.length() - 1)));
+        animCube.setSingleRotationSpeed(Math.round(speed));
+        animCube.setDoubleRotationSpeed(Math.round(speed));
+
         //Solves the cube, and extracts the solution
         Solver.solve(MainActivity.usercube);
-
-        animCube.setDebuggable(true);
 
         //Sets the created list variables
         setListVariables("sunflower", Solver.sunflower);

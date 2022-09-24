@@ -30,14 +30,15 @@
         android:fontFamily="@font/product_sans_bold"
         android:text="Solve"
         android:textColor="#FFFFFF"
-        app:cornerRadius="15dp"
         app:icon="@drawable/ic_rubiks_cube_icon_small"
+        app:iconSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331" />
+        app:layout_constraintVertical_bias="0.331"
+        app:cornerRadius="25dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/timerButton"
@@ -47,13 +48,14 @@
         android:fontFamily="@font/product_sans_bold"
         android:textColor="@color/white"
         app:icon="@drawable/ic_baseline_timer_24"
+        app:iconSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.331"
-        app:cornerRadius="15dp"/>
+        app:cornerRadius="25dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/algoButton"
@@ -63,13 +65,14 @@
         android:text="Algorithms"
         android:textColor="@color/white"
         app:icon="@drawable/ic_baseline_view_week_24"
+        app:iconSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.575"
-        app:cornerRadius="15dp"/>
+        app:cornerRadius="25dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsButton"
@@ -79,13 +82,14 @@
         android:text="Settings"
         android:textColor="@color/white"
         app:icon="@drawable/ic_baseline_settings_24"
+        app:iconSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.575"
-        app:cornerRadius="15dp"/>
+        app:cornerRadius="25dp"/>
 
     <ImageView
         android:id="@+id/imageView"

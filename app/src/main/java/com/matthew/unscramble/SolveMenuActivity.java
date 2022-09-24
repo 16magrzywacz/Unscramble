@@ -27,34 +27,25 @@ public class SolveMenuActivity extends AppCompatActivity {
         home = (ImageButton)findViewById(R.id.solveMenuHome);
 
         //Returns to home when pressed
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SolveMenuActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(SolveMenuActivity.this, MainActivity.class);
+            startActivity(intent);
         });
 
         //Switches view to the camera input page when the button is pressed
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Store.resetScrambleVariables();
-                Store.usingCamera = true;
-                Intent intent = new Intent(SolveMenuActivity.this, CameraInputActivity.class);
-                startActivity(intent);
-            }
+        cameraButton.setOnClickListener(view -> {
+            Store.resetScrambleVariables();
+            Store.usingCamera = true;
+            Intent intent = new Intent(SolveMenuActivity.this, CameraInputActivity.class);
+            startActivity(intent);
         });
 
         //Switches view to the manual input page when the button is pressed
-        manualButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Store.resetScrambleVariables();
-                Store.usingCamera = false;
-                Intent intent = new Intent(SolveMenuActivity.this, ManualInputActivity.class);
-                startActivity(intent);
-            }
+        manualButton.setOnClickListener(view -> {
+            Store.resetScrambleVariables();
+            Store.usingCamera = false;
+            Intent intent = new Intent(SolveMenuActivity.this, ManualInputActivity.class);
+            startActivity(intent);
         });
     }
 }

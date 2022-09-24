@@ -346,7 +346,6 @@ public class Cube {
         for(int i = 0; i < 20; i++) {
             array[i] = scramble[0][i] + scramble[1][i];
         }
-        System.out.println("Scrambled with " + Arrays.toString(array));
         return array;
     }
 

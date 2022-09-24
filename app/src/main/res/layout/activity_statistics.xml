@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".StatisticsActivity">
 
     <TextView
-        android:id="@+id/noneSetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not calibrated!"
-        android:fontFamily="@font/product_sans_regular"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206" />
-
-    <TextView
-        android:id="@+id/settingsTitleText"
+        android:id="@+id/StatisticsMenuText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/product_sans_bold"
-        android:text="SETTINGS"
+        android:text="STATISTICS"
         android:textColor = "?android:textColorPrimary"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -39,7 +23,7 @@
         app:layout_constraintVertical_bias="0.054" />
 
     <ImageButton
-        android:id="@+id/settingsHome"
+        android:id="@+id/statisticsMenuHome"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/primary_blue"
@@ -52,91 +36,100 @@
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <TextView
-        android:id="@+id/calibrationTitleSettings"
+        android:id="@+id/bestTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calibration"
-        android:fontFamily="@font/product_sans_bold"
+        android:fontFamily="@font/product_sans_regular"
+        android:text="Best time: "
         android:textColor="?android:textColorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
-        android:id="@+id/currentlyCalibratedText"
+        android:id="@+id/meanTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="State of calibrated colours:"
         android:fontFamily="@font/product_sans_regular"
+        android:text="Mean time: "
         android:textColor="?android:textColorPrimary"
-        android:textSize="14sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.206" />
 
-    <Button
-        android:id="@+id/calibrateButtonSettings"
+    <TextView
+        android:id="@+id/ao5Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calibrate"
-        android:fontFamily="@font/product_sans_bold"
+        android:fontFamily="@font/product_sans_regular"
+        android:text="Current Ao5: "
+        android:textColor="?android:textColorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <TextView
+        android:id="@+id/ao12Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_regular"
+        android:text="Current Ao12: "
+        android:textColor="?android:textColorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.291" />
+
+    <ImageView
+        android:id="@+id/statsCube"
+        android:layout_width="155dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975"
+        app:srcCompat="@drawable/cube" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/resetTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Times"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintVertical_bias="0.825" />
 
-    <TextView
-        android:id="@+id/animSpeedTitleSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cube Animation Speed"
-        android:fontFamily="@font/product_sans_bold"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="366dp"
+        android:layout_height="314dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.362" />
-
-    <TextView
-        android:id="@+id/setAnimSpeedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set animation speed:"
-        android:fontFamily="@font/product_sans_regular"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="95dp"
-        android:layout_height="23dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintVertical_bias="0.575" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
